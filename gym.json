@@ -101,21 +101,22 @@
       "nombre": "Core Crusher",
       "descripcion": "Entrenamiento específico de abdominales y core.",
       "nivel": 2,
-      "imagen": "https://img.freepik.com/vector-premium/imagen-variaciones-ejercicio-plancha_232603-31.jpg",
+      "imagen": "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1200&q=80&utm_source=chatgpt.com",
       "ejercicios": [
         {
           "nombre": "Plancha",
           "descripcion": "Plancha abdominal isométrica.",
           "tiempo": 60,
-          "imagen": "https://img.freepik.com/vector-premium/imagen-variaciones-ejercicio-plancha_232603-31.jpg"
+          "imagen": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1200&utm_source=chatgpt.com"
         },
         {
           "nombre": "Crunches",
           "descripcion": "Abdominales tradicionales.",
           "tiempo": 45,
-          "imagen": "https://www.shutterstock.com/image-vector/woman-doing-crunches-gym-belly-600nw-1234348741.jpg"
+          "imagen": "https://images.unsplash.com/photo-1671970922029-0430d2ae122c?auto=format&fit=crop&w=1200&q=80&utm_source=chatgpt.com"
         }
       ]
     }
   ]
 }
+

@@ -1,22 +1,66 @@
-<nav class="navbar navbar-dark bg-dark">
-
-  
-</nav>
-
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="#">
-    <img src="logoElorrietaFitness.png" width="100" height="100" alt="">
+    <img src="logoElorrietaFitness.png" height="100" alt="">
     ElorrietaFitness
   
   </a>
 </nav>
 <main class="flex-shrink-0 justify-content-center mt-3">
-    ?QINsfdsjdfsjdf
+  @if(!gymservice.vistaEjercicios()){
+    Nivel <select (change)="filtrar()" [(ngModel)]="filtroElegido">
+    @for(nivel of this.gymservice.niveles() ; track $index){
+        <option>{{nivel}}</option>
+      }
+    </select>
+    <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Nivel</th>
+        <th scope="col">Imagen</th>
+        <th scope="col colspan-2">Ejercicios</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    
+  @for(workout of gymservice.workouts(); track $index){
+      <tr>
+      <td>{{workout.nombre}}</td>
+      <td>{{workout.descripcion}}</td>
+      <td>@switch(workout.nivel){
+        @case (1){
+          Principiante
+        }  
+         @case (2){
+          Intermedio
+        }  
+        @case (3){
+          Avanzado
+        }  
+      }
+        
+
+      </td>
+      <td><img src="{{workout.imagen}} " height="100"></td>
+      <td>@for(ejercicio of workout.ejercicios; track $index){
+          <p>{{ejercicio.nombre}}</p>
+      }
+      </td>
+      <td><button class="btn btn-secondary" (click)="mostrarEjercicios(workout)">Ver Ejercicios</button></td>
+  </tr>
+  }
+  </tbody>
+  </table>
+  }
+  @else {
+  <app-visualizar-ejercicios/>
+  }
 </main>
 <footer class="footer mt-auto py-3 bg-body-tertiary fixed-bottom">
-    <div class="row px-3">
-    <div>qQQQ</div>
-    <div>qQQQ</div>
-    </div>
+  <div class="row px-4"> 
+  <div class="col">Ayoub, Jon, Gorka, Alazne</div>
+    <div class="col text-end">IN2DM3 - Primer Reto</div>
+    </div> 
 </footer>
