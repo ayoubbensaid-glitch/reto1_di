@@ -1,17 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="#">
     <img src="logoElorrietaFitness.png" height="100" alt="">
-    ElorrietaFitness
-  
+    
   </a>
+  <div class="p-4">
+    <h1 class="fw-bold">ElorrietaFitness</h1>
+  </div>
+    
 </nav>
 <main class="flex-shrink-0 justify-content-center mt-3">
   @if(!gymservice.vistaEjercicios()){
-    Nivel <select (change)="filtrar()">
+    <div class="d-flex flex-row p-2">
+      <div class="p-2 fw-bold">Nivel:</div>
+      <div class="p-2">
+      <select [(ngModel)]="nivelSeleccionado" (change)="filtrar()">
     @for(nivel of this.gymservice.niveles() ; track $index){
         <option>{{nivel}}</option>
       }
     </select>
+</div>
+    </div>
+    
     <table class="table table-striped align-middle">
     <thead>
       <tr>
@@ -25,7 +34,7 @@
     <tbody>
 
     
-  @for(workout of gymservice.workouts(); track $index){
+  @for(workout of workoutsFiltrados; track $index){
       <tr>
       <td>{{workout.nombre}}</td>
       <td>{{workout.descripcion}}</td>
@@ -55,7 +64,7 @@
   </table>
   }
   @else {
-  <app-visualizar-ejercicios/>
+  <app-visualizar-ejercicios [workoutElegido] = "workoutElegido"/>
   }
 </main>
 <footer class="footer mt-auto py-3 bg-body-tertiary fixed-bottom">

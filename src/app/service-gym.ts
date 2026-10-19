@@ -10,15 +10,6 @@ export class ServiceGym {
     workouts=signal<Workout[]>([]);
     niveles=signal(new Set);
     vistaEjercicios = signal<boolean>(false);
-    workoutElegido = signal<Workout>({
-    id: 0,
-    nombre: '',
-    descripcion: '',
-    nivel: 0,
-    imagen: '',
-    ejercicios: []
-  });
-    
 
     getActividades()
     {

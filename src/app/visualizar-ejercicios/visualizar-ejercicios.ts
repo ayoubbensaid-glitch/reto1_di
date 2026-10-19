@@ -9,9 +9,10 @@ import { ServiceGym } from '../service-gym';
   templateUrl: './visualizar-ejercicios.html',
 })
 export class VisualizarEjercicios {
-
-
-gymservice=inject(ServiceGym)
+  gymservice=inject(ServiceGym)
+  @Input("workoutElegido") workoutElegido: Workout = 
+  {id: 0, nombre:"placeholder", descripcion:  "placeholder" , nivel:0 , imagen: "placeholder", ejercicios:  []};
+  
 
 volver() :void{
     this.gymservice.vistaEjercicios.set(false)

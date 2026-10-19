@@ -1,5 +1,5 @@
 <div class="container-fluid text-center">
-  <h1>Ejercicios de {{gymservice.workoutElegido().nombre}}</h1>
+  <h1>Ejercicios de {{workoutElegido.nombre}}</h1>
 <table class="table table-striped align-middle w-100">
   <thead>
     <tr>
@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-@for(ejercicio of gymservice.workoutElegido().ejercicios; track $index){
+@for(ejercicio of workoutElegido.ejercicios; track $index){
     <tr>
     <td>{{ejercicio.nombre}}</td>
     <td>{{ejercicio.descripcion}}</td>
