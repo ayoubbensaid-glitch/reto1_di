@@ -7,7 +7,7 @@
 </nav>
 <main class="flex-shrink-0 justify-content-center mt-3">
   @if(!gymservice.vistaEjercicios()){
-    Nivel <select (change)="filtrar()" [(ngModel)]="filtroElegido">
+    Nivel <select (change)="filtrar()">
     @for(nivel of this.gymservice.niveles() ; track $index){
         <option>{{nivel}}</option>
       }

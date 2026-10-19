@@ -5,7 +5,7 @@ import { VisualizarEjercicios } from './visualizar-ejercicios/visualizar-ejercic
 import { NgModel } from '@angular/forms';
 
 @Component({
-  imports: [ VisualizarEjercicios,NgModel],
+  imports: [ VisualizarEjercicios],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -58,12 +58,7 @@ export class App implements OnInit{
     return nivel; 
   }
 
- filtrar() : Workout[]{
-    
-    var filtrado = this.gymservice.workouts.filter(workout =>
-      workout.
-    )
-    return;
+ filtrar(){
 
   }
 
