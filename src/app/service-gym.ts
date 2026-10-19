@@ -6,7 +6,9 @@ import { Workout } from './gym-datos';
 export class ServiceGym {
     private httpclient = inject(HttpClient)
 
+
     readonly API_URL:string="http://localhost:3000/workouts"
+    
     workouts=signal<Workout[]>([]);
     niveles=signal(new Set);
     vistaEjercicios = signal<boolean>(false);
