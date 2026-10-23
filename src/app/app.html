@@ -2,7 +2,6 @@
 <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="#">
     <img src="logoElorrietaFitness.png" height="100" alt="">
-
   </a>
   <div class="p-4">
     <h1 class="fw-bold">ElorrietaFitness</h1>
@@ -11,61 +10,75 @@
 
 <!-- MAIN / CONTENIDO GENERAL -->
 <!-- Muestra los Workouts o Ejercicios en una tabla dependiendo de si se ha seleccionado un workout -->
-<main class="flex-shrink-0 justify-content-center mt-3">
+<main class="flex-shrink-0 justify-content-center mt-3 px-3">
   @if(!gymservice.vistaEjercicios()){
-  <div class="d-flex flex-row p-2">
-    <div class="p-2 fw-bold">Nivel:</div>
-    <div class="p-2">
 
-      <!-- FILTRO POR DE NIVEL -->
-      <select [(ngModel)]="nivelSeleccionado" (change)="filtrar()">
-        @for(nivel of this.gymservice.niveles() ; track $index){
-        <option>{{nivel}}</option>
-        }
-      </select>
+  <div class="d-flex flex-row align-items-center p-2 w-100">
+
+    <div class="d-flex flex-row align-items-center">
+      <div class="p-2 fw-bold">Nivel:</div>
+      <div class="p-2">
+        <!-- FILTRO POR DE NIVEL -->
+        <select class="form-select form-select-sm" [(ngModel)]="nivelSeleccionado" (change)="filtrar()">
+          @for(nivel of this.gymservice.niveles() ; track $index){
+          <option>{{nivel}}</option>
+          }
+        </select>
+      </div>
     </div>
+    <div class="ms-auto p-2">
+
+      <input type="text" class="form-control" placeholder="Buscar workout..." [(ngModel)]="textoBusqueda"
+        (input)="filtrar()" />
+    </div>
+
   </div>
 
-  <table class="table table-striped align-middle">
+  <!-- TABLA DE WORKOUTS -->
+  <table class="table table-striped align-middle mt-2 text-center">
     <thead>
       <tr>
         <th scope="col">Nombre</th>
         <th scope="col">Descripcion</th>
         <th scope="col">Nivel</th>
         <th scope="col">Imagen</th>
-        <th scope="col colspan-2">Ejercicios</th>
+        <th scope="col">Ejercicios</th>
+        <th scope="col">Duración Estimada</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
+      @if(workoutsFiltrados.length == 0){
+        <td colspan="4">No hay resultados</td>
+      }
+      @else {
       @for(workout of workoutsFiltrados; track $index){
       <tr>
         <td>{{workout.nombre}}</td>
         <td>{{workout.descripcion}}</td>
         <!-- MOSTRAMOS LOS NIVELES EN TEXTO EN VEZ DE EN NUMERO -->
-        <td>@switch(workout.nivel){
-          @case (1){ 
-          Principiante
-          }
-          @case (2){
-          Intermedio
-          }
-          @case (3){
-          Avanzado
-          }
+        <td>
+          {{nivelToString(workout.nivel)}}
+        </td>
+        <td><img src="{{workout.imagen}}" height="100"></td>
+        <td>
+          @for(ejercicio of workout.ejercicios; track $index){
+          <p class="mb-1">{{ejercicio.nombre}}</p>
           }
         </td>
-        <td><img src="{{workout.imagen}} " height="100"></td>
-        <td>@for(ejercicio of workout.ejercicios; track $index){
-          <p>{{ejercicio.nombre}}</p>
-          }
-        </td>
+        <td>{{duracionWorkout(workout)}}</td>
         <!-- Un boton por cada workout para mostrar sus ejercicios -->
-        <td><button class="btn btn-secondary" (click)="mostrarEjercicios(workout)">Ver Ejercicios</button></td>
+        <td>
+          <button class="btn btn-secondary" (click)="mostrarEjercicios(workout)">Ver Ejercicios</button>
+        </td>
       </tr>
       }
+      }
+
     </tbody>
   </table>
   }
+
   @else {
   <app-visualizar-ejercicios [workoutElegido]="workoutElegido" />
   }

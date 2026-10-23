@@ -17,6 +17,7 @@ export class App implements OnInit {
   // Un array que se filtrará cuando el usuario seleccione algún filtro
   workoutsFiltrados: Workout[] = [];
   nivelSeleccionado = "Todos";
+  textoBusqueda = "";
 
   // El workout que ha elegido un workout para mostrar sus ejercicios.
   // Se guarda el workout para que el hijo visualizar-ejerccios pueda mostrar el titulo del workout.
@@ -95,9 +96,22 @@ export class App implements OnInit {
         workout.nivel === this.nivelToNumber(this.nivelSeleccionado)
       )
     }
-    console.log(this.workoutsFiltrados);
+    if (this.textoBusqueda !== "") { {
+      this.workoutsFiltrados = this.workoutsFiltrados.filter(workout =>  
+        workout.nombre.toLowerCase().includes(this.textoBusqueda.toLowerCase())
+      );
+      console.log(this.workoutsFiltrados)
+    }
 
   }
+  }
 
-
+  //una funcion para calcular la duracion estimada de los workouts
+  duracionWorkout(workout: Workout): Number{
+    var duracion: number = 0;
+    for(var ejercicio of workout.ejercicios){
+      duracion += ejercicio.tiempo
+    }
+    return duracion;
+  }
 }
